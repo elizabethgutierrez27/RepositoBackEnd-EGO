@@ -1,50 +1,59 @@
-import express,{Application} from 'express';
-import morgan from 'morgan';
+import express, { Application } from 'express';
 import cors from 'cors';
+import morgan from 'morgan';
 import bodyParser from 'body-parser';
 
+
+import authRoutes from './routes/authRoutes';
+import usuarioRoutes from './routes/usuarioRoutes';
 /*
 * Clase de inicio de nuestra aplicación NodeJsExpress
-* Autor: Elizabeth Gutierrez Olvera
-* Fecha: 28 de febrero de 2024
+* Autor: Gabriel Barrón Rodríguez
+* Fecha: 23 Junio 2024
 */
+class Server {
+    private app: Application;
 
-class Server{
-    private app:Application;
 
     //Inicializa clase
-    constructor(){
-        this.app=express();
+    constructor() {
+        this.app = express();
         this.config();
         this.routes();
-        this.app.listen(this.app.get("port"), ()=>{
+        this.app.listen(this.app.get("port"), () => {
             console.log("Server on port", this.app.get("port"));
         });
-
     }
+
 
     //Configuración de módulos
-    config():void{
-        //configuración del puerto para el servidor
-        this.app.set("port",3000);
+    config(): void {
+        // configuración del puerto para el servidor
+        this.app.set("port", 3000);
 
-        //muestra las peticiones en consola
+
+        // muestra las peticiones en consola
         this.app.use(morgan("dev"));
 
-        //Puertos de conexion de la API
+
+        // puertos de conexión de la API
         this.app.use(cors());
 
-        //Solo se permiten peticiones en formato JSON
+
+        // solo se permiten peticiones en formato JSON
         this.app.use(bodyParser.json());
-
-        this.app.use(bodyParser.urlencoded({extended:false}));
+        this.app.use(bodyParser.urlencoded({ extended: false, }),
+        );
     }
 
-    //Configuración de las rutas
-    routes(){
 
+    //Configura las rutas
+    routes() {
+        this.app.use("/", authRoutes);
+        this.app.use('/usuario',usuarioRoutes);
     }
-
 }
 
+
 const server = new Server();
+
