@@ -8,8 +8,8 @@ import authRoutes from './routes/authRoutes';
 import usuarioRoutes from './routes/usuarioRoutes';
 /*
 * Clase de inicio de nuestra aplicación NodeJsExpress
-* Autor: Gabriel Barrón Rodríguez
-* Fecha: 23 Junio 2024
+* Autor: Elizabeth Gutierrez Olvera
+* Fecha: 01 de febrero de 2024
 */
 class Server {
     private app: Application;

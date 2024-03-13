@@ -17,8 +17,7 @@ class UsuarioModelo {
     list() {
         return __awaiter(this, void 0, void 0, function* () {
             const result = yield connection_1.default.then((connection) => __awaiter(this, void 0, void 0, function* () {
-                return yield connection.query(" SELECT u.email, u.password, u.role "
-                    + " FROM tbl_usuario u ");
+                return yield connection.query("SELECT u.email, u.password, u.role " + " FROM tbl_usuario u ");
             }));
             return result;
         });
@@ -26,16 +25,15 @@ class UsuarioModelo {
     add(usuario) {
         return __awaiter(this, void 0, void 0, function* () {
             const result = yield connection_1.default.then((connection) => __awaiter(this, void 0, void 0, function* () {
-                return yield connection.query(" INSERT INTO tbl_usuario SET ? ", [usuario]);
+                return yield connection.query("INSERT INTO tbl_usuario SET ? ", [usuario]);
             }));
             return result;
         });
     }
     update(usuario) {
         return __awaiter(this, void 0, void 0, function* () {
-            const update = "UPDATE tbl_usuario SET password='" + usuario.password +
-                "' where email='" + usuario.email + "'";
-            console.log("Update  " + update);
+            const update = "UPDATE tbl_usuario SET password='" + usuario.password + "' WHERE email = '" + usuario.email + "'";
+            console.log("UPDATE " + update);
             const result = yield connection_1.default.then((connection) => __awaiter(this, void 0, void 0, function* () {
                 return yield connection.query(update);
             }));
@@ -44,9 +42,17 @@ class UsuarioModelo {
     }
     delete(email) {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log('Eliminando');
+            console.log('Eliminado');
             const result = yield connection_1.default.then((connection) => __awaiter(this, void 0, void 0, function* () {
-                return yield connection.query("DELETE FROM tbl_usuario where email= ?", [email]);
+                return yield connection.query("DELETE FROM tbl_usuario WHERE email = ?", [email]);
+            }));
+            return result;
+        });
+    }
+    findByEmail(email) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const result = yield connection_1.default.then((connection) => __awaiter(this, void 0, void 0, function* () {
+                return yield connection.query("SELECT * FROM tbl_usuario WHERE email = ?", [email]);
             }));
             return result;
         });

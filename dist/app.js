@@ -11,8 +11,8 @@ const authRoutes_1 = __importDefault(require("./routes/authRoutes"));
 const usuarioRoutes_1 = __importDefault(require("./routes/usuarioRoutes"));
 /*
 * Clase de inicio de nuestra aplicación NodeJsExpress
-* Autor: Gabriel Barrón Rodríguez
-* Fecha: 23 Junio 2024
+* Autor: Elizabeth Gutierrez Olvera
+* Fecha: 01 de febrero de 2024
 */
 class Server {
     //Inicializa clase
